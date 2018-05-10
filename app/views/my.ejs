@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <%- include('./common/head.ejs') %>
+  <body>
+      <div class="weui-tab__panel" id="index_content">
+          <div class="weui-tab__panel" id="my_content">
+              <div class="weui-cells" style="margin-top: 0px;">
+                  <a href="javascript:;" class="weui-cell weui-cell_access">
+                      <div class="weui-cell__hd">
+                          <img src="<%= base.cdn %>/images/head/bear.jpg" id="userHeadImage" alt="" style="width:70px;height:70px;border-radius: 4px;margin-right: 10px;">
+                      </div>
+                      <div class="weui-cell__bd">
+                          <h4 class="weui-media-box__title" id="userName" style="font-size:13px;margin-bottom:5px;">2222</h4>
+                          <p class="weui-media-box__desc" style="margin-bottom:10px;">ID:
+                              <span id="userId">111</span>
+                          </p>
+                      </div>
+                      <div class="weui-cell__ft"></div>
+                  </a>
+              </div>
+
+              <div class="weui-cells">
+                  <a href="/zshop/user/orderList" class="weui-cell weui-cell_access">
+                      <div class="weui-cell__hd">
+                          <img src="<%= base.cdn %>/images/center-icon-order-all.png" alt="" class="center-list-icon">
+                      </div>
+                      <div class="weui-cell__bd">
+                          <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">我的订单</p>
+                      </div>
+                      <div class="weui-cell__ft"></div>
+                  </a>
+              </div>
+              <div class="weui-flex wy-iconlist-box">
+                  <div class="weui-flex__item">
+                      <a href="/zshop/user/orderList?status=2" class="wy-links-iconlist" style="position:relative;">
+                          <span class="weui-badge" id="payBadge" style="position: absolute;top:-7px;right:10px; font-size:10px;">11</span>
+                          <div class="img">
+                              <img src="<%= base.cdn %>/images/center-icon-order-dfk.png" style="height: 24px;width: auto;">
+                          </div>
+                          <p style="margin-top:0px;">待付款</p>
+                      </a>
+                  </div>
+                  <div class="weui-flex__item">
+                      <a href="/zshop/user/orderList?status=3" class="wy-links-iconlist" style="position:relative;">
+                          <span class="weui-badge" id="sendBadge" style="position: absolute;top:-7px;right:10px; font-size:10px;">2</span>
+                          <div class="img">
+                              <img src="<%= base.cdn %>/images/center-icon-order-dfh.png" style="height: 24px;width: auto;">
+                          </div>
+                          <p style="margin-top:0px;">待发货</p>
+                      </a>
+                  </div>
+                  <div class="weui-flex__item">
+                      <a href="/zshop/user/orderList?status=4" class="wy-links-iconlist" style="position:relative;">
+                          <span class="weui-badge" id="recvieBadge" style="position: absolute;top:-7px;right:10px; font-size:10px;">3</span>
+                          <div class="img">
+                              <img src="<%= base.cdn %>/images/center-icon-order-dsh.png" style="height: 24px;width: auto;">
+                          </div>
+                          <p style="margin-top:0px;">待收货</p>
+                      </a>
+                  </div>
+                  <div class="weui-flex__item">
+                      <a href="/zshop/user/orderList?status=5" class="wy-links-iconlist" style="position:relative;">
+                          <span class="weui-badge" id="evalBadge" style="position: absolute;top:-7px;right:10px; font-size:10px;">4</span>
+                          <div class="img">
+                              <img src="<%= base.cdn %>/images/center-icon-order-dpj.png" style="height: 24px;width: auto;">
+                          </div>
+                          <p style="margin-top:0px;">待评价</p>
+                      </a>
+                  </div>
+              </div>
+
+              <div class="weui-cells">
+                  <a href="/zshop/user/collection/index" class="weui-cell weui-cell_access">
+                      <div class="weui-cell__hd">
+                          <img src="<%= base.cdn %>/images/center-icon-sc.png" alt="" class="center-list-icon">
+                      </div>
+                      <div class="weui-cell__bd">
+                          <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">我的收藏</p>
+                      </div>
+                  </a>
+                  <a href="javascript:;" class="weui-cell weui-cell_access">
+                      <div class="weui-cell__hd">
+                          <img src="<%= base.cdn %>/images/center-icon-dz.png" alt="" class="center-list-icon">
+                      </div>
+                      <div class="weui-cell__bd">
+                          <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">地址管理</p>
+                      </div>
+                  </a>
+                  <a href="javascript:;" class="weui-cell weui-cell_access">
+                      <div class="weui-cell__hd">
+                          <img src="<%= base.cdn %>/images/center-icon-dlmm.png" alt="" class="center-list-icon">
+                      </div>
+                      <div class="weui-cell__bd">
+                          <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">密码修改</p>
+                      </div>
+                  </a>
+                  <a href="javascript:;" class="weui-cell weui-cell_access" id="signoutHref">
+                      <div class="weui-cell__hd">
+                          <img src="<%= base.cdn %>/images/center-icon-out.png" alt="" class="center-list-icon">
+                      </div>
+                      <div class="weui-cell__bd">
+                          <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">退出登录</p>
+                      </div>
+                  </a>
+              </div>
+          </div>
+          <!--底部-->
+          <%- include('./common/tabbar.ejs') %>
+      </div>
+  </body>
+</html>

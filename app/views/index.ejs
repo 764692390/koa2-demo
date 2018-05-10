@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>koa2</title>
-</head>
-<body>
-    <% data.forEach( item =>{ %>
-        <div><%= item %></div>
-    <% })%>
+<html lang="zh-cmn-Hans">
 
-    <% data.forEach( item =>{ %>
-        <%- include('div',{item}) %>
-    <% })%>
-    <script src="/js/global.js"></script>
+	<%- include('./common/head.ejs') %>
+	
+<body>
+	<div class="weui-tab__panel" id="index_content" style="display: block; ">
+		<!--轮播图-->
+		<%- include('./common/banner.ejs') %>
+
+		<!--快速导航-->
+		<%- include('./common/quick-nav.ejs') %>
+		
+		<img src="/images/vt/mid.png" style="width: 100%;margin-top:5px;"/>
+		
+		<!--精品推荐-->
+		<%- include('./common/recommend.ejs') %>
+		
+		<!--底部-->
+		<%- include('./common/tabbar.ejs') %>
+
+	</div>
 </body>
 </html>

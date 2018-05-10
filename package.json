@@ -21,7 +21,8 @@
     "koa-views": "^6.1.4",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
-    "sequelize": "^4.37.7"
+    "sequelize": "^4.37.7",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
