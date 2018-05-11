@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>商品详情</title>
-    <link rel="stylesheet" href="<%= base.cdn %>/css/weui.min.css"/>
-	<link rel="stylesheet" href="<%= base.cdn %>/css/style.css"/>
-	<link rel="stylesheet" href="<%= base.cdn %>/css/swiper-4.1.6.min.css"/>
-	<script data-main="<%= base.cdn %>/js/app/prod-detail" src="<%= base.cdn %>/js/lib/require.js" defer async="true"></script>
-    <style>
-        /*返回顶部*/
-        #tophovertree{display:block;position:fixed;width:36px;height:36px;right:10px;bottom:60px;cursor:pointer;background-image:url(<%= base.cdn %>/images/tophovertree.gif);opacity:0.9;display:none}
-
-		.swiper-pagination-bullet-active {
-			background: green;
-		}
-    </style>
-</head>
-
+<%- include('./common/head.ejs') %>
 <body>
     <header class="wy-header">
         <div class="wy-header-icon-back"><a href="javascript:window.history.back();"></a></div>
@@ -26,15 +9,16 @@
             <span class="wy-header-titlebut" style="margin-left:40px;" id="detail">详情</span>
             <span class="wy-header-titlebut" style="margin-left:40px;" id="evaluate">评价</span>
 		</div>
-		<div class="wy-header-icon-index"><a href="/zshop/"></a></div>
+		<div class="wy-header-icon-index"><a href="/"></a></div>
 	</header>
 
 	<div id="productDiv" class="wy-product-content">
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
-				{% for di in product.detailImagesArr %}
-				<div class="swiper-slide"><img src="<%= base.cdn %>/images/product/detail/{{di}}" width="100%"></div>
-				{% endfor %}
+				<% let data= [1,2,3,4]%>
+				<% for di in  %>
+				<div class="swiper-slide"><img src="<%= base.cdn %>/images/product/detail/prod_detail0.jpg" width="100%"></div>
+				{% } %}
 			</div>
 			<!-- 分页器 -->
 			<div class="swiper-pagination"></div>

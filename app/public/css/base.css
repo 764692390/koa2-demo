@@ -1,0 +1,271 @@
+html,body{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #fff;
+}
+
+/*首页最外层*/
+#index_content{
+    display:block;
+    background: #fff; 
+    position: fixed;
+    top:0;
+    left: 0; 
+    width: 100%; 
+    height: calc(100% - 55px ); 
+}
+
+.pulldown-tips,
+.pullDownLabel,
+.pullUpLabel {
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
+
+.pulldown-tips {
+    margin-top: -30px;
+}
+
+/*首页-轮播*/
+.swper-radius{
+    position: absolute; 
+    background: #fff;
+    width: 150%; 
+    height: 90px;
+    border-radius: 100%;
+    z-index: 2;
+    bottom: -68px;
+    left: -25%;
+    transition: all 0.5s ease;
+}
+.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets{
+    bottom: 22px;
+}
+.swiper-pagination-bullet-active {
+    background: green;
+}
+
+/*首页-快速导航*/
+.wy-iconlist-box {
+    background: #fff;
+    padding: 0;
+}
+
+.wy-links-iconlist {
+    display: block;
+    text-align: center;
+    margin: 5px 0;
+}
+.wy-links-iconlist .img {
+    margin: 0 30%;
+}
+
+.wy-links-iconlist p {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+.wy-links-iconlist img {
+    width: 100%;
+}
+
+/*精品推荐*/
+.title-recommend{
+    border-bottom: 2px solid #f8f8f8;
+    font-size:12px;
+    background-color: #fff;
+    text-align:center;
+    color:#666;
+    padding:5px;
+}
+
+/*列表*/
+.wy-iconlist-box-ex {
+    background: #f8f8f8;
+    padding: 0;
+    overflow: hidden;
+}
+.wy-iconlist-box-ex .item{
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+    background: #fff;
+    border: 2px solid #f8f8f8;
+}
+
+.wy-links-iconlist-ex {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.wy-links-iconlist-ex .img {
+    margin: 0 23px;
+}
+
+.wy-links-iconlist-ex img {
+    width: 100%;
+}
+
+.wy-links-iconlist-ex p {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/*购物车*/
+.wy-header {
+    height: 41px;
+    border-bottom: 1px solid #e1e1e1;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    background-color: #f7f7fa;
+} 
+.wy-header-icon-back {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 44px;
+}
+.wy-header-icon-back a {
+    width: 20px;
+    height: 20px;
+    margin: 12px 0 0 10px;
+    background: url(../images/icon-back.png) no-repeat;
+    background-size: 20px;
+    display: block;
+}
+.wy-header-title {
+    margin: 0 50px;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    font-size: 15px;
+    color: #252525;
+}
+.wy-header-icon-index {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 44px;
+}
+
+.wy-header-icon-index a {
+    width: 25px;
+    height: 25px;
+    margin: 9px 0 0 3px;
+    background: url(../images/index_bak.png) no-repeat;
+    background-size: 25px;
+    display: block;
+}
+.weui-media-box_appmsg .weui-media-box__hd {
+    width: 20px;
+}
+.wy-dele {
+    width: 20px;
+    height: 20px;
+    background: url(../images/icon-dele.png) no-repeat;
+    display: block;
+    background-size: 20px;
+}
+.Spinner {
+    display: block;
+    overflow: hidden;
+    width: 88px;
+    margin: 0;
+}
+.Spinner a {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #d9d9d9;
+    background-color: #f7f7f7;
+    float: left;
+    cursor: pointer;
+    outline: 0;
+}
+.Spinner .Amount {
+    width: 26px;
+    height: 14px;
+    padding: 4px 5px;
+    line-height: 14px;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    float: left;
+    text-align: center;
+    color: #333;
+    outline: 0;
+    font-size: 14px;
+    border-left: 0px;
+    border-right: 0px;
+}
+.Spinner .DisDe i {
+    background-position: -0px -12px;
+}
+.Spinner a i {
+    font-style: normal;
+    background: url(../images/BuynBtn.png) no-repeat;
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin: 5px;
+    text-indent: 999999%;
+    overflow: hidden;
+}
+.Spinner .Increase i {
+    background-position: -12px -0px;
+}
+
+/*用户中心*/
+.center-list-icon {
+    width: 20px;
+    height: auto;
+}
+.wy-iconlist-box {
+    background: #fff;
+    padding: 0;
+}
+.wy-links-iconlist {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+.wy-links-iconlist .img {
+    margin: 0 23px;
+}
+.wy-links-iconlist p {
+    font-size: 12px;
+    color: #666;
+}
+
+/*商品详情*/
+
+
+/*返回顶部*/
+#tophovertree{
+    display:block;
+    position:fixed;
+    width:36px;
+    height:36px;
+    right:10px;
+    bottom:60px;
+    cursor:pointer;
+    background-image:url(./images/tophovertree.gif);
+    opacity: 0.9;
+    display:none
+}
+
+
+/*底部导航*/
+.weui-tabbar {
+    height: 55px;
+    position: fixed;
+    bottom: 0;
+}

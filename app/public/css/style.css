@@ -2,6 +2,10 @@ body,
 html {
     height: 100%;
     background-color: #f8f8f8;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 .searchbar-result {

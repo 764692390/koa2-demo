@@ -20,7 +20,10 @@ router
     .get('my', async(ctx, next) => {
         ctx.state.index = 4;
         await ctx.render("my");
-    });
+    })
+    .get('prodDetail/:id',async(ctx, next) => {
+        await ctx.render("prod-detail");
+    })
 
 
 
