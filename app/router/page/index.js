@@ -20,10 +20,19 @@ router
     .get('cart', async(ctx, next) => {
         ctx.state.index = 3;
         await ctx.render("cart");
+        if(ctx.session.user){
+            await ctx.render("cart");
+        } else{
+            ctx.redirect('login');
+        }
     })
     .get('my', async(ctx, next) => {
         ctx.state.index = 4;
-        await ctx.render("my");
+        if(ctx.session.user){
+            await ctx.render("my");
+        } else{
+            ctx.redirect('login');
+        }
     })
     .get('prodDetail/:id',async(ctx, next) => {
         await ctx.render("prod-detail");

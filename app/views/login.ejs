@@ -32,11 +32,10 @@
 		<div class="weui-cell weui-cell_vcode" style="font-size: 14px;">
 			<div class="weui-cell__hd" ><label class="weui-label">验证码</label></div>
 			<div class="weui-cell__bd">
-				<input class="weui-input" placeholder="请输入验证码"/>
+				<input class="weui-input" id="code" name="code" placeholder="请输入验证码"/>
 			</div>
 			<div class="weui-cell__ft">
-				<img class="weui-vcode-img" src="<%= base.cdn %>/images/vcode.jpg" />
-				<!-- img class="weui-vcode-img" src="/zshop/captcha" /> -->
+				<img class="weui-vcode-img btnCode" src="<%= base.cdn %>/api/v1/user/code?t=<%= new Date().getTime() %>" />
 			</div>
 		</div>
 		<div class="weui-cell weui-cell_vcode">
@@ -65,6 +64,10 @@
 			<p class="weui-footer__text">Copyright &copy; 2018-2099 lzhop</p>
 		</div>
 	</div>
+
+	<%- include('./public-tip.ejs') %>
+	<script src="<%= base.cdn %>/js/app/public-tip.js" ></script>
+	<script src="<%= base.cdn %>/js/app/login.js" ></script>
 
 </body>
 </html>

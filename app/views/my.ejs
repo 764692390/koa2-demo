@@ -4,17 +4,17 @@
   <body>
     <div class="weui-tab__panel" id="my_content" style=" background: #f8f8f8;">
         <div class="weui-cells lz-shop-user" style="margin-top: 0px; height:160px">
-            <a href="javascript:;" class="weui-cell weui-cell_access" style="height:100%;">
+            <div class="weui-cell weui-cell_access" style="height:100%;">
                 <div class="weui-cell__hd">
-                    <img src="<%= base.cdn %>/images/head/bear.jpg" id="userHeadImage" alt="" style="width:70px;height:70px;border-radius: 50%;margin-right: 10px;">
+                    <img data-src="<%= base.cdn %>"  id="userHeadImage" alt="" style="width:70px;height:70px;border-radius: 50%;margin-right: 10px;">
                 </div>
                 <div class="weui-cell__bd">
-                    <h4 class="weui-media-box__title" id="userName" style="font-size:13px;margin-bottom:5px;">2222</h4>
-                    <p class="weui-media-box__desc" style="margin-bottom:10px;">ID:
-                        <span id="userId">111</span>
+                    <h4 class="weui-media-box__title" id="userName" style="font-size:13px;margin-bottom:5px;"></h4>
+                    <p class="weui-media-box__desc" style="margin-bottom:10px;">
+                        <span id="userId"></span>
                     </p>
                 </div>
-            </a>
+            </div>
         </div>
 
         <div class="weui-cells">
@@ -96,12 +96,13 @@
                     <img src="<%= base.cdn %>/images/center-icon-out.png" alt="" class="center-list-icon">
                 </div>
                 <div class="weui-cell__bd">
-                    <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">退出登录</p>
+                    <p style="font-size:13px;margin-left:10px;margin-bottom:5px;" id="signOut">退出登录</p>
                 </div>
             </a>
         </div>
     </div>
     <!--底部-->
     <%- include('./common/tabbar.ejs') %>
+    <script src="<%= base.cdn %>/js/app/my.js" ></script>
   </body>
 </html>

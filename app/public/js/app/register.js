@@ -47,7 +47,7 @@ $(function() {
         }).done(function(r) {
             if(r.errno === "0") {
                 setTimeout(function(){
-                    //window.location.href = '/login';
+                    window.location.href = '/login';
                     $("#confirmBtn").removeClass('weui-btn_loading');
                 $("#confirmLoading").removeClass('weui-loading');
                 },1000)

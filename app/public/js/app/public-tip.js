@@ -46,28 +46,17 @@ var showError = function (resp) {
 
 var tipTimeOutId;
 var showTip = function (resp) {
-	//var msgObj = JSON.parse(msg);
-	if (resp.code == 'login:must_login') {
-		var loginSuccUrl = resp.loginSuccUrl || window.location.pathname || "/zshop/";
-		window.location.href = '/zshop/login?loginSuccUrl=' + loginSuccUrl;
-	} else {
-		$("#errorTip").html(resp.message);
+		$("#errorTip").html(resp);
 		clearTimeout(tipTimeOutId);
-		//$("#errorTip").show(800);
 		$("#errorTip").show();
 
 		tipTimeOutId = setTimeout(function () {
 			$("#errorTip").hide();
 			$("#errorTip").html('');
 		}, 2000);
-	}
+	
 }
-var showTipForStr = function (tipMsg, tipCode) {
-	var msgObj = new Object();
-	msgObj.message = tipMsg;
-	if (tipCode) {
-		msgObj.code = tipCode;
-	}
+var showTipForStr = function (msgObj) {
 	showTip(msgObj);
 }
 

@@ -8,6 +8,7 @@ class Services extends BaseServices {
     super(User)
   }
 
+  // 创建用户
   create = async params => {
 
     let password = md5(params.password);
@@ -25,16 +26,11 @@ class Services extends BaseServices {
 
     params.status = 1
 
-    const findPhone = await this.findPhone({phone: params.phone});
-
-    if(findPhone.length > 0 ){
-      console.log('用户已存在')
-    }
-
     const data = await this._model.create(params);
     return data 
   }
 
+  //通过手机号查找用户
   findPhone = async params => {
     const data = await this._model.findAll(params);
     return data 
