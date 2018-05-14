@@ -25,7 +25,7 @@ class BaseModel {
    */
   findAll = async where => {
 
-    return this._schema.findAll({ where, order: ['sort'] })
+    return this._schema.findAll({ where, order: [['sort','DESC']] })
   }
 
   /**
@@ -69,7 +69,7 @@ class BaseModel {
     let rows = Math.floor( ctx.query.rows ) || 10;
   
     let data = await this._schema.findAndCountAll({
-      order: ['sort'],
+      order:  [['sort','DESC']],
       limit: rows,
       offset: (index - 1) * rows,
     });
