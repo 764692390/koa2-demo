@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>订单详情</title>
-    <link rel="stylesheet" href="<%= base.cdn %>/css/weui.min.css"/>
-	<link rel="stylesheet" href="<%= base.cdn %>/css/style.css"/>
-	<script data-main="<%= base.cdn %>/js/app/order-detail" src="<%= base.cdn %>/js/lib/require.js" defer async="true"></script>
-    <style>
-		.weui-media-box {
-			padding: 1px;
-		}
-		.weui-cell:before{
-			border-top: 0px solid #e5e5e5;
-		}
-	</style>
-</head>
-
+<%- include('./common/head.ejs') %>
 <body>
 	<header class="wy-header">
 	    <div class="wy-header-icon-back"><a href="javascript:window.history.back();"></a></div>

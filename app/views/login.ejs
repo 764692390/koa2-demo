@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>登录</title>
-    <link rel="stylesheet" href="<%= base.cdn %>/css/weui.min.css"/>
-	<link rel="stylesheet" href="<%= base.cdn %>/css/style.css"/>
-	<script data-main="<%= base.cdn %>/js/app/login" src="<%= base.cdn %>/js/lib/require.js" defer async="true"></script>
-    <style>
-	.weui-cells:after {
-		border-bottom: 0px solid #e5e5e5;
-	}
-	</style>
-</head>
-
+<%- include('./common/head.ejs') %>
 <body style="background-color: #ffffff;">
 	<header class="wy-header">
 		<div class="wy-header-icon-back"><a href="javascript:window.history.back();"></a></div>
 		<div class="wy-header-title">登录商城</div>
-		<div class="wy-header-icon-index"><a href="/zshop/"></a></div>
+		<div class="wy-header-icon-index"><a href="/"></a></div>
 	</header>
 	
 	<div class="weui-cells weui-cells_form" style="padding-top: 44px;margin-top: 0px;">
@@ -57,7 +44,7 @@
 		
 		<div class="weui-btn-area" >
 			<a class="weui-btn weui-btn_primary" href="javascript:" id="loginBtn" style="font-size: 14px;height:39px;"><i id="loginLoading"></i>登 录</a>
-			<a class="weui-btn weui-btn_default" href="/zshop/registPage" id="" style="font-size: 14px;height:39px;">注 册</a>
+			<a class="weui-btn weui-btn_default" href="/reg" id="" style="font-size: 14px;height:39px;">注 册</a>
 		</div>
 		
 		<label for="remember" class="weui-agree" style="font-size: 13px;">
@@ -75,12 +62,9 @@
 
 	<div class="weui-msg__extra-area">
 		<div class="weui-footer">
-			<p class="weui-footer__text">Copyright &copy; 2018-2099 zshop</p>
+			<p class="weui-footer__text">Copyright &copy; 2018-2099 lzhop</p>
 		</div>
 	</div>
-
-	<input type="hidden" id="loginSuccUrl" value="{{loginSuccUrl}}"/>
-	{% include "public-tip.html" %}
 
 </body>
 </html>

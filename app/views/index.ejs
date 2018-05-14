@@ -2,23 +2,14 @@
 <html lang="zh-cmn-Hans">
 	<%- include('./common/head.ejs') %>
 <body>
-	<div class="weui-tab__panel" id="index_content">
-		<div>
-			<div id="pullDown" class="">
-				<div class="pullDownLabel"></div>
-			</div>
-			<div class="pulldown-tips">下拉刷新</div>
-			<!--轮播图-->
-			<%- include('./common/banner.ejs') %>
-			<!--快速导航-->
-			<%- include('./common/quick-nav.ejs') %>
-			<img src="/images/vt/mid.png" style="width: 100%;margin-top:5px;"/>
-			<!--精品推荐-->
-			<%- include('./common/recommend.ejs') %>
-			<div id="pullUp" class="">
-				<div class="pullUpLabel">加载更多</div>
-			</div>
-		</div>
+	<div class="weui-tab__panel mescroll" id="index_content">
+		<!--轮播图-->
+		<%- include('./common/banner.ejs') %>
+		<!--快速导航-->
+		<%- include('./common/quick-nav.ejs') %>
+		<img src="/images/vt/mid.png" style="width: 100%;margin-top:5px;"/>
+		<!--精品推荐-->
+		<%- include('./common/recommend.ejs') %>
 	</div>
 	<!--底部-->
 	<%- include('./common/tabbar.ejs') %>

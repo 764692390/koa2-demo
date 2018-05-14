@@ -24,7 +24,8 @@ class BaseModel {
    * @return {Array} Model列表
    */
   findAll = async where => {
-    return this._schema.findAll({ where, order: ['sort', 'DESC'] })
+
+    return this._schema.findAll({ where, order: ['sort'] })
   }
 
   /**
@@ -66,9 +67,9 @@ class BaseModel {
   getList = async (ctx) => {
     let index = Math.floor(ctx.query.index) || 1;
     let rows = Math.floor( ctx.query.rows ) || 10;
-    
+  
     let data = await this._schema.findAndCountAll({
-      order: 'sort DESC',
+      order: ['sort'],
       limit: rows,
       offset: (index - 1) * rows,
     });

@@ -1,9 +1,9 @@
-const database = 'koa2-demo';
-const user = 'root';
-const pass = 'root';
+const database = 'koa';
+const user = 'koa';
+const pass = '123456';
 
 const options = {
-    host: 'localhost',
+    host: '47.95.205.217',
     dialect: 'mysql',
     pool: {
         max: 5,

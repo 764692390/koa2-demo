@@ -3,10 +3,10 @@
   <%- include('./common/head.ejs') %>
   <body>
     <div class="weui-tab__panel" id="my_content" style=" background: #f8f8f8;">
-        <div class="weui-cells" style="margin-top: 0px;">
-            <a href="javascript:;" class="weui-cell weui-cell_access">
+        <div class="weui-cells lz-shop-user" style="margin-top: 0px; height:160px">
+            <a href="javascript:;" class="weui-cell weui-cell_access" style="height:100%;">
                 <div class="weui-cell__hd">
-                    <img src="<%= base.cdn %>/images/head/bear.jpg" id="userHeadImage" alt="" style="width:70px;height:70px;border-radius: 4px;margin-right: 10px;">
+                    <img src="<%= base.cdn %>/images/head/bear.jpg" id="userHeadImage" alt="" style="width:70px;height:70px;border-radius: 50%;margin-right: 10px;">
                 </div>
                 <div class="weui-cell__bd">
                     <h4 class="weui-media-box__title" id="userName" style="font-size:13px;margin-bottom:5px;">2222</h4>
@@ -14,24 +14,22 @@
                         <span id="userId">111</span>
                     </p>
                 </div>
-                <div class="weui-cell__ft"></div>
             </a>
         </div>
 
         <div class="weui-cells">
-            <a href="/user/orderList" class="weui-cell weui-cell_access">
+            <a href="/orderList" class="weui-cell weui-cell_access">
                 <div class="weui-cell__hd">
                     <img src="<%= base.cdn %>/images/center-icon-order-all.png" alt="" class="center-list-icon">
                 </div>
                 <div class="weui-cell__bd">
                     <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">我的订单</p>
                 </div>
-                <div class="weui-cell__ft"></div>
             </a>
         </div>
         <div class="weui-flex wy-iconlist-box">
             <div class="weui-flex__item">
-                <a href="/user/orderList?status=2" class="wy-links-iconlist" style="position:relative;">
+                <a href="/orderList?status=2" class="wy-links-iconlist" style="position:relative;">
                     <span class="weui-badge" id="payBadge" style="position: absolute;top:-7px;right:10px; font-size:10px;">11</span>
                     <div class="img">
                         <img src="<%= base.cdn %>/images/center-icon-order-dfk.png" style="height: 24px;width: auto;">
@@ -40,7 +38,7 @@
                 </a>
             </div>
             <div class="weui-flex__item">
-                <a href="/user/orderList?status=3" class="wy-links-iconlist" style="position:relative;">
+                <a href="/orderList?status=3" class="wy-links-iconlist" style="position:relative;">
                     <span class="weui-badge" id="sendBadge" style="position: absolute;top:-7px;right:10px; font-size:10px;">2</span>
                     <div class="img">
                         <img src="<%= base.cdn %>/images/center-icon-order-dfh.png" style="height: 24px;width: auto;">
@@ -49,7 +47,7 @@
                 </a>
             </div>
             <div class="weui-flex__item">
-                <a href="/user/orderList?status=4" class="wy-links-iconlist" style="position:relative;">
+                <a href="/orderList?status=4" class="wy-links-iconlist" style="position:relative;">
                     <span class="weui-badge" id="recvieBadge" style="position: absolute;top:-7px;right:10px; font-size:10px;">3</span>
                     <div class="img">
                         <img src="<%= base.cdn %>/images/center-icon-order-dsh.png" style="height: 24px;width: auto;">
@@ -58,7 +56,7 @@
                 </a>
             </div>
             <div class="weui-flex__item">
-                <a href="/user/orderList?status=5" class="wy-links-iconlist" style="position:relative;">
+                <a href="/orderList?status=5" class="wy-links-iconlist" style="position:relative;">
                     <span class="weui-badge" id="evalBadge" style="position: absolute;top:-7px;right:10px; font-size:10px;">4</span>
                     <div class="img">
                         <img src="<%= base.cdn %>/images/center-icon-order-dpj.png" style="height: 24px;width: auto;">
@@ -69,7 +67,7 @@
         </div>
 
         <div class="weui-cells">
-            <a href="/user/collection/index" class="weui-cell weui-cell_access">
+            <a href="/collection/index" class="weui-cell weui-cell_access">
                 <div class="weui-cell__hd">
                     <img src="<%= base.cdn %>/images/center-icon-sc.png" alt="" class="center-list-icon">
                 </div>
@@ -93,7 +91,7 @@
                     <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">密码修改</p>
                 </div>
             </a>
-            <a href="javascript:;" class="weui-cell weui-cell_access" id="signoutHref">
+            <a href="/login" class="weui-cell weui-cell_access" id="signoutHref">
                 <div class="weui-cell__hd">
                     <img src="<%= base.cdn %>/images/center-icon-out.png" alt="" class="center-list-icon">
                 </div>

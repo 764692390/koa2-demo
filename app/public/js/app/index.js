@@ -1,113 +1,108 @@
-$(function() {
-    // 首页轮播
-    var mySwiper = new Swiper('.swiper-container', {
-        loop: true,
-        autoplay: {
-            delay: 2000
+$(function () {
+
+
+    var isGet = true;
+    var mescroll = new MeScroll("index_content", {
+        //第一个参数"mescroll"对应上面布局结构div的id
+        //如果您的下拉刷新是重置列表数据,那么down完全可以不用配置,具体用法参考第一个基础案例
+        //解析: down.callback默认调用mescroll.resetUpScroll(),而resetUpScroll会将page.num=1,再触发up.callback
+        down: {
+            callback: downCallback //下拉刷新的回调,别写成downCallback(),多了括号就自动执行方法了
+           
         },
-        // 分页器
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true
+        up: {
+            callback: upCallback, //上拉加载的回调
+            isBounce: false, //如果您的项目是在iOS的微信,QQ,Safari等浏览器访问的,建议配置此项.解析(必读)
         }
     });
 
-    //获取元素
-    var myScroll = false,
-        pullDown = $("#pullDown"),
-        pullUp = $("#pullUp"),
-        pullDownLabel = $(".pullDownLabel"),
-        pullUpLabel = $(".pullUpLabel"),
-        loadingStep = 0; //加载状态0默认，1显示加载状态，2执行加载数据，只有当为0时才能再次加载，这是防止过快拉动刷新  
-    pullDown.hide();
-    pullUp.hide();
-    index = 1; // 页码
-    pagesize = 1; //总页数
-    
-
-    //下拉刷新操作  
-    function pullDownAction() {
-       // $('#list ul.clearfix').html('');
-        setTimeout(function () {
-            index = 1;
-           
-            pullDown.attr('class', '').stop().animate({height:0 },500,function(){
-                pullDown.hide();
-                $(".pulldown-tips").show();
-            })
-            myScroll.refresh();
-            loadingStep = 0;
-            
-        }, 1000);
-    }
-
-    //上拉加载更多  
-    function pullUpAction() {
-        index = index + 1;
-        if (pagesize < index) {
-            pullUpLabel.text("到底了");
-            setTimeout(function () {
-                pullUp.attr('class', '').hide();
-                myScroll.refresh();
-                loadingStep = 0;
-            }, 1000);
-        } else {
-            setTimeout(function () {
-                pullUp.attr('class', '').hide();
-                myScroll.refresh();
-                loadingStep = 0;
-               
-            }, 1000);
+    function render(data,type) {
+        let html = '';
+        for (let i=0; i<data.length; i++) {
+            html+=`<div class="item">
+                        <a href="/prodDetail/${data[i].goods_id}" class="wy-links-iconlist-ex">
+                            <div class="img"><img class="lazy" src="${data[i].thumb_url}"></div>
+                            <!--<p style="color:black;font-size:13px;">${data[i].goods_name}</p>-->
+                            <p style="line-height:18px;width: 80%;margin-left: 10%;text-align: left;font-size:14px">${data[i].short_name}</p>
+                            <p style="color:red;font-size:15px;font-weight: bold;">¥ ${data[i].price/100}</p>
+                        </a>
+                    </div>`;
+        };
+        if(type){
+            $('#recommendBox').append(html);
+        }else{
+            $('#recommendBox').html('');
+            $('#recommendBox').html(html);
         }
     }
-    // iscroll初始化
-    function init() {
-        myScroll = new IScroll('#index_content', {
-            //scrollbars: true,
-            mouseWheel: false,
-            interactiveScrollbars: true,
-            shrinkScrollbars: 'scale',
-            fadeScrollbars: true,
-            scrollY: true,
-            probeType: 2,
-            bindToWrapper: true
-        });
 
-        myScroll.on("scroll", function () {
-            if (loadingStep == 0 && !pullDown.attr("class").match('refresh|loading') && !pullUp.attr(
-                    "class").match('refresh')) {
-                if (this.y > 40) { //下拉刷新操作  
-                    $(".pulldown-tips").hide();
-                    pullDown.addClass("refresh").css({height:'30px' }).show();
-                    pullDownLabel.text("松手刷新数据");
-                    loadingStep = 1;
-                    myScroll.refresh();
-                } else if (this.y < (this.maxScrollY - 14)) { //上拉加载更多  
-                    pullUp.addClass("refresh").show();
-                    pullUpLabel.html("加载中...");
-                    loadingStep = 1;
-                    pullUpAction();
-                }
+
+    //下拉刷新的回调
+    function downCallback() {
+        $.ajax({
+            url: '/api/v1/shop/getlist',
+            success: function (data) {
+                //联网成功的回调,隐藏下拉刷新的状态;
+                mescroll.endSuccess(); //无参
+                //设置数据
+                //setXxxx(data);//自行实现 TODO
+                render(data.data.rows,false)
+            },
+            error: function (data) {
+                //联网失败的回调,隐藏下拉刷新的状态
+                mescroll.endErr();
             }
         });
-        myScroll.on("scrollEnd", function () {
-            if (loadingStep == 1) {
-                if (pullDown.attr("class").match("refresh")) { //下拉刷新操作  
-                    pullDown.removeClass("refresh").addClass("loading");
-                    pullDownLabel.text("正在刷新...");
-                    loadingStep = 2;
-                    pullDownAction();
-                }
+    }
+
+    //上拉加载的回调 page = {num:1, size:10}; num:当前页 默认从1开始, size:每页数据条数,默认10
+    function upCallback(page) {
+        var index = parseInt(page.num) + 1;
+        var rows = parseInt(page.size) *10
+        console.log(typeof isGet);
+        console.log(isGet);
+        console.log(index);
+        if(typeof isGet === 'number' && isGet <= index){
+            $('.mescroll-upwarp .mescroll-rotate').hide();
+            $('.upwarp-tip').html('到底了！')
+            return false;
+        }
+        $.ajax({
+            url: '/api/v1/shop/getlist?index=' + index + "&rows=" + rows, //如何修改page.num从0开始 ?
+            success: function (curPageData) {
+                //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
+                //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空,显示empty配置的内容;
+                //列表如果无下一页数据,则提示无更多数据,(注意noMoreSize的配置)
+
+                //方法一(推荐): 后台接口有返回列表的总页数 totalPage
+                //必传参数(当前页的数据个数, 总页数)
+                isGet = Math.ceil(curPageData.data.count/curPageData.data.limit);
+                mescroll.endByPage(curPageData.data.limit, curPageData.data.count);
+                
+
+                //方法二(推荐): 后台接口有返回列表的总数据量 totalSize
+                //必传参数(当前页的数据个数, 总数据量)
+                //mescroll.endBySize(curPageData.length, totalSize);
+
+                //方法三(推荐): 您有其他方式知道是否有下一页 hasNext
+                //必传参数(当前页的数据个数, 是否有下一页true/false)
+                //mescroll.endSuccess(curPageData.length, hasNext);
+
+                //方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.
+                //如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据
+                //如果传了hasNext,则翻到第二页即可显示无更多数据.
+                //mescroll.endSuccess(curPageData.length);
+
+                //设置列表数据
+                //setListData(curPageData);//自行实现 TODO
+                render(curPageData.data.rows,true)
+            },
+            error: function (e) {
+                //联网失败的回调,隐藏下拉刷新和上拉加载的状态
+                mescroll.endErr();
             }
         });
+    }
 
-        // 默认事件
-        document.addEventListener('touchmove', function (e) {
-            e.preventDefault();
-        }, false);
-    }    
-
-    // 初始化
-    init();
 
 });

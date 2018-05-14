@@ -1,4 +1,4 @@
-import { Home } from '../../models'
+import { Shop } from '../../models'
 import BaseServices from '../base-services'
 import request from 'request'
 
@@ -12,12 +12,12 @@ const curl = function (fn) {
 
 class Services extends BaseServices {
   constructor() {
-    super(Home)
+    super(Shop)
   }
 
-  getBanner = async (id) => {
+  getData = async () => {
     let data = await curl((resolve,reject) => {
-      request('http://m.ehaier.com/sg/cms/indexTop.json', function (error, response, body) {
+      request('https://apiv2.pinduoduo.com/operation/15/groups?opt_type=1&offset=0&size=500', function (error, response, body) {
         if (!error && response.statusCode == 200) {
           resolve(JSON.parse(body))
         } else {
@@ -26,8 +26,8 @@ class Services extends BaseServices {
       })
     }
     );
-    let  topBannerList = data.data.topBannerList
-    return topBannerList;
+   
+    return data;
   }
 }
 

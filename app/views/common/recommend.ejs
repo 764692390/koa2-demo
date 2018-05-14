@@ -1,20 +1,8 @@
 <div class="title-recommend">精品推荐</div>
-<% let data=[1,2,3,4,5,6,,7,8]%>
+<div class="wy-iconlist-box-ex weui-flex" id="recommendBox">
 
-<div class="wy-iconlist-box-ex">
-    <% for( let i=0; i<data.length;i++){ %>
-        <div class="item">
-            <a href="/zshop/prodDetail/1" class="wy-links-iconlist-ex">
-                <div class="img"><img src="<%= base.cdn %>/images/product/good1.jpg"></div>
-                <p style="color:black;font-size:13px;">魅蓝 Note1</p>
-                <p>疾速双摄 1100万前置美拍</p>
-                <p style="color:red;">¥1199.99</p>
-            </a>
-        </div>
-    <% } %>
 </div>
-<% if(data.length == 0){ %>
-<div class="weui-flex__item" >
+<div class="weui-flex__item" style="display:none">
     <a href="javascript:;" class="wy-links-iconlist-ex"></a>
 </div>
-<% } %>
+

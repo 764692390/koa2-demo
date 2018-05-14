@@ -13,7 +13,7 @@ const res = (data) => {
   };
   
   if (data) {
-    info.data = data;
+    info.data = data.data;
   }
   return info;
 };
