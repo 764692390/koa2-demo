@@ -455,3 +455,23 @@ body {
 .weui-cells:after {
     border-bottom: 0px solid #e5e5e5;
 }
+
+.weui-cells:after {
+    border-bottom: 0px solid #e5e5e5;
+}
+.weui-cell:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #e5e5e5;
+    color: #e5e5e5;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    left: 15px;
+    z-index: 2;
+}

@@ -21,7 +21,7 @@ $(function () {
         for (let i=0; i<data.length; i++) {
             html+=`<div class="item">
                         <a href="/prodDetail/${data[i].goods_id}" class="wy-links-iconlist-ex">
-                            <div class="img"><img class="lazy" src="${data[i].thumb_url}"></div>
+                            <div class="img"><img class="lazyload" data-src="${data[i].thumb_url}"></div>
                             <!--<p style="color:black;font-size:13px;">${data[i].goods_name}</p>-->
                             <p style="line-height:18px;width: 80%;margin-left: 10%;text-align: left;font-size:14px">${data[i].short_name}</p>
                             <p style="color:red;font-size:15px;font-weight: bold;">¥ ${data[i].price/100}</p>
@@ -39,8 +39,9 @@ $(function () {
 
     //下拉刷新的回调
     function downCallback() {
+        var t = new Date().getTime();
         $.ajax({
-            url: '/api/v1/shop/getlist',
+            url: '/api/v1/shop/getlist?t=' + t,
             success: function (data) {
                 //联网成功的回调,隐藏下拉刷新的状态;
                 mescroll.endSuccess(); //无参
@@ -58,17 +59,15 @@ $(function () {
     //上拉加载的回调 page = {num:1, size:10}; num:当前页 默认从1开始, size:每页数据条数,默认10
     function upCallback(page) {
         var index = parseInt(page.num) + 1;
-        var rows = parseInt(page.size) *10
-        console.log(typeof isGet);
-        console.log(isGet);
-        console.log(index);
+        var rows = parseInt(page.size);
+        var t = new Date().getTime();
         if(typeof isGet === 'number' && isGet <= index){
             $('.mescroll-upwarp .mescroll-rotate').hide();
             $('.upwarp-tip').html('到底了！')
             return false;
         }
         $.ajax({
-            url: '/api/v1/shop/getlist?index=' + index + "&rows=" + rows, //如何修改page.num从0开始 ?
+            url: '/api/v1/shop/getlist?index=' + index + "&rows=" + rows +"&t=" + t, //如何修改page.num从0开始 ?
             success: function (curPageData) {
                 //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
                 //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空,显示empty配置的内容;

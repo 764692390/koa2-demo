@@ -1,5 +1,4 @@
 import koaRouter from 'koa-router';
-import uuid from 'uuid/v1';
 import { Home, Shop } from '../../services'
 
 const router = koaRouter();

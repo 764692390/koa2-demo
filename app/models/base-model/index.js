@@ -35,7 +35,7 @@ class BaseModel {
    */
   create = async data => {
     const sort = await this._getSort()
-
+    console.log(data);
     return this._schema.create({ ...data, sort })
   }
 
