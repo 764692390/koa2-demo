@@ -6,27 +6,21 @@ import koaStatic from 'koa-static'
 import cors from '@koa/cors'
 import session from 'koa-generic-session'
 import redisStore from 'koa-redis'
-import Redis from 'ioredis'
 import router from './app/router';
 import config from './app/config';
 import log from './app/middlewares/log';
 
 const app = new Koa();
-const redis=new Redis(config.Redis);
+
 app.keys = ['keys', 'keykeys'];
+
 app
     .use(log())
     .use(cors())
     .use(bodyParser())
-    .use( async(ctx,next) =>{
-        ctx.redis = redis;
-        await next();  
-    })
     .use(session({
         key: "LzShop",
-        store: redisStore({
-
-        })
+        store: redisStore(config.SessionRedis)
     }))
     .use(koaStatic(__dirname + "/app/public"))
     .use(

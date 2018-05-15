@@ -16,14 +16,7 @@ export default {
     SessionRedis: {
         host: process.env.SESSION_PORT_6379_TCP_ADDR || '127.0.0.1',
         port: process.env.SESSION_PORT_6379_TCP_PORT || 6379,
+        password: 'qq5201314',
         ttl: 60*60
     },
-    //redis数据库配置
-    Redis: {
-        host: process.env.SESSION_PORT_6379_TCP_ADDR || '127.0.0.1',
-        port: process.env.SESSION_PORT_6379_TCP_PORT || 6379,       
-        prefix: "lzShop:", //存诸前缀
-        ttl: 0, //过期时间
-        db: 0
-    }
 }
