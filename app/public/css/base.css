@@ -263,7 +263,7 @@ body {
     font-size: 12px;
     color: #666;
 }
-.lz-shop-user{
+.lz-shop-user .weui-cell.weui-cell_access{
     background-image: url(../images/head//user-bj.jpg);
     background-position: center;
     background-repeat: no-repeat;
