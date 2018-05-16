@@ -19,14 +19,22 @@ $(function () {
   })
 
   // 退出登录
-  $('#signOut').on('click',function(){
+  $('#signoutHref').on('click',function(){
     $.ajax({
       type: 'get',
       dataType: 'json',
       contentType: 'application/json',
       url: '/api/v1/user/signOut',
     }).done(function (r) {
-      window.location.href = '/login?t='+new Date().getTime()
+      if (r.errno == 0) {
+        
+        $("#hideHref").attr('href','/my?t='+ new Date().getTime());
+        setTimeout(function(){
+          $("#hideHref")[0].click();
+        },0)
+        //微信不兼容这种跳转 window.location.href = '/login?t='+new Date().getTime()
+      }
+      
     })
   })
 

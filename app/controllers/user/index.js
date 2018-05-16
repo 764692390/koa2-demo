@@ -19,9 +19,10 @@ class Controller extends BaseController {
   }
   // 退出
   signOut = async ctx => {
-    ctx.session = {};
+    console.log(ctx.session);
+    ctx.session =  await {};
     ctx.body  = { 'errno': 0, 'errmsg': '用户退出成功' }
-
+    console.log(ctx.session);
   }
   // 设置code
   setCode = async ctx => {

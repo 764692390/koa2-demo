@@ -39,9 +39,10 @@ $(function () {
         }).done(function (r) {
             if(r.errno === 0) {
                 setTimeout(function(){
-                    window.location.href = '/my?t='+ new Date().getTime();
+                    $("#hideHref").attr('href','/my?t='+ new Date().getTime());
                     $("#loginBtn").removeClass('weui-btn_loading');
                     $("#loginLoading").removeClass('weui-loading');
+                    $("#hideHref")[0].click();
                 },1000)
             }else{
                 publicTip.showTip(r.errmsg);
