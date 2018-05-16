@@ -14,7 +14,7 @@ $(function () {
       $('#userName').html(data.userName);
       $('#userId').html(data.phone);
     } else {
-      window.location.href = '/login'
+      window.location.href = '/login?t='+ new Date().getTime()
     }
   })
 
@@ -26,7 +26,7 @@ $(function () {
       contentType: 'application/json',
       url: '/api/v1/user/signOut',
     }).done(function (r) {
-      window.location.href = '/login'
+      window.location.href = '/login?t='+new Date().getTime()
     })
   })
 
