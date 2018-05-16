@@ -12,11 +12,4 @@ export default {
         title: "LzShop",
         clas: '0',
     },
-    //session-redis配置
-    SessionRedis: {
-        host: process.env.SESSION_PORT_6379_TCP_ADDR || '127.0.0.1',
-        port: process.env.SESSION_PORT_6379_TCP_PORT || 6379,
-        password: 'qq5201314',
-        ttl: 60*60
-    },
 }
