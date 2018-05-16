@@ -5,7 +5,7 @@ $(function () {
     type: 'get',
     dataType: 'json',
     contentType: 'application/json',
-    url: '/api/v1/user',
+    url: '/api/v1/user?t='+ new Date().getTime(),
   }).done(function (r) {
     if (r.errno == 0) {
       var data = r.data;
@@ -14,7 +14,10 @@ $(function () {
       $('#userName').html(data.userName);
       $('#userId').html(data.phone);
     } else {
-      window.location.href = '/login?t='+ new Date().getTime()
+      $("#hideHref").attr('href','/login?t='+ new Date().getTime());
+      setTimeout(function(){
+        $("#hideHref")[0].click();
+      },0)
     }
   })
 
@@ -24,11 +27,11 @@ $(function () {
       type: 'get',
       dataType: 'json',
       contentType: 'application/json',
-      url: '/api/v1/user/signOut',
+      url: '/api/v1/user/signOut?t='+ new Date().getTime(),
     }).done(function (r) {
       if (r.errno == 0) {
         
-        $("#hideHref").attr('href','/my?t='+ new Date().getTime());
+        $("#hideHref").attr('href','/login?t='+ new Date().getTime());
         setTimeout(function(){
           $("#hideHref")[0].click();
         },0)
