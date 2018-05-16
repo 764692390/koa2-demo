@@ -49,7 +49,7 @@
     </div>
 	
 
-	<div class="weui-tabbar" style="position:fixed; height: 47px;">
+	<div class="weui-tabbar" style="position:fixed; height: 47px; bottom:55px;">
 		<div class="weui-media-box__hd weui-cells_checkbox" style="line-height: 44px;margin-left:15px;">
 			<label class="weui-check__label" for="cart-all" >
 				<div class="weui-cell__hd" ><input type="checkbox" class="weui-check" id="cart-all"><i class="weui-icon-checked"></i><span style="font-size: 13px;"> 全选<span></div>
@@ -58,10 +58,13 @@
 		<div style="margin:0 auto;line-height: 47px;font-size: 13px;">
 			总计 : <span style="color:red" id="totalPrice">1000</span>
 		</div>
-		<a href="javascript:void(0);" style="width: 110px; background-color: green; color: rgb(255, 255, 255); text-align: center; line-height: 44px; font-size: 14px;" id="settlement">
+		<a href="javascript:void(0);" style="width: 110px; background-color: #09bb07; color: rgb(255, 255, 255); text-align: center; line-height: 44px; font-size: 14px;" id="settlement">
 			结算
 		</a>
 	</div>
+
+	<!--底部-->
+	<%- include('./common/tabbar.ejs') %>
 
 </body>
 </html>

@@ -77,11 +77,11 @@
 				</a> 
 			</div>
 		</div>
-		<div class="weui-loadmore weui-loadmore_line" id="nodata" v-show="!hasdata">
+		<div class="weui-loadmore weui-loadmore_line" id="nodata" style="display:none">
 			<span class="weui-loadmore__tips" style="background-color: #f8f8f8;">暂无数据</span>
 		</div>
 
-		<div v-show="loading && !loadMoreflag">
+		<div style="display:none">
 			<div class="weui-mask_transparent"></div>
 			<div class="weui-toast">
 				<i class="weui-loading weui-icon_toast"></i>
