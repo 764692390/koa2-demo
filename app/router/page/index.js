@@ -19,7 +19,6 @@ router
     })
     .get('cart', async(ctx, next) => {
         ctx.state.index = 3;
-        await ctx.render("cart");
         if(ctx.session.user){
             await ctx.render("cart");
         } else{
@@ -46,30 +45,30 @@ router
     .get('reg',async(ctx, next) => {
         await ctx.render("register");
     })
-    // .get('shop',async(ctx, next) => {
-    //     const data = await Shops.getData();
-    //     const list = { data:data.goods_list };
-    //    const res = list.data;
-    //     for(let i=0; i <res.length; i++ ) {
-    //         let params = {
-    //             goods_name: res[i].goods_name ,
-    //             event_type: res[i].event_type,
-    //             goods_id: res[i].goods_id,
-    //             price:  res[i].group.price,
-    //             hd_thumb_url: res[i].hd_thumb_url ,
-    //             market_price: res[i].market_price,
-    //             short_name: res[i].short_name,
-    //             thumb_url: res[i].thumb_url
-    //         }
-    //         let d = await Shops.create(params);
-    //         console.log(i);
-    //         console.log(d);
+    .get('shop',async(ctx, next) => {
+        const data = await Shops.getData();
+        const list = { data:data.goods_list };
+       const res = list.data;
+        for(let i=0; i <res.length; i++ ) {
+            let params = {
+                goods_name: res[i].goods_name ,
+                event_type: res[i].event_type,
+                goods_id: res[i].goods_id,
+                price:  res[i].group.price,
+                hd_thumb_url: res[i].hd_thumb_url ,
+                market_price: res[i].market_price,
+                short_name: res[i].short_name,
+                thumb_url: res[i].thumb_url
+            }
+            let d = await Shops.create(params);
+            console.log(i);
+            console.log(d);
 
-    //     }
+        }
 
-    //     ctx.body = list
+        ctx.body = list
         
-    // })
+    })
 export default router;
 
 
