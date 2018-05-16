@@ -19,11 +19,7 @@ router
     })
     .get('cart', async(ctx, next) => {
         ctx.state.index = 3;
-        if(ctx.session.user){
-            await ctx.render("cart");
-        } else{
-            ctx.redirect('login');
-        }
+        await ctx.render("cart");
     })
     .get('my', async(ctx, next) => {
         ctx.state.index = 4;
