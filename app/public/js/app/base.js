@@ -3,7 +3,7 @@ $(function () {
   var mySwiper = new Swiper('.swiper-container', {
     loop: true,
     autoplay: {
-      delay: 2000
+      delay: 3000
     },
     // 分页器
     pagination: {

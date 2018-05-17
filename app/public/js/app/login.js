@@ -39,7 +39,7 @@ $(function () {
         }).done(function (r) {
             if(r.errno === 0) {
                 setTimeout(function(){
-                    $("#hideHref").attr('href','/my?t='+ new Date().getTime());
+                    $("#hideHref").attr('href','/my');
                     $("#loginBtn").removeClass('weui-btn_loading');
                     $("#loginLoading").removeClass('weui-loading');
                     $("#hideHref")[0].click();
