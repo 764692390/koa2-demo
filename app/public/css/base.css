@@ -7,6 +7,28 @@ body {
     left: 0;
     background: #fff;
 }
+html,body,h1,h2,h3,h4,h5,h6,p,ul,li,ol,dl,dt,dd,div,span,a,b,i,strong,em,img,form,input,textarea,table,th,td,section{padding:0; margin:0;}
+html,body{ font-family:'Microsoft Yahei',sans-serif; width:100%; height:100%;overflow:initial;}
+body{background:#fff;color:#313131;font-size:14px;-webkit-overflow-scrolling:touch;}
+h1,h2,h3,h4,h5,h6{ font-size:100%; line-height:100%; font-weight:normal;}
+li{ list-style:none;}
+a{ text-decoration:none; display: block; color:#313131;-webkit-tap-highlight-color: rgba(0,0,0,0)}
+a:hover{text-decoration:none !important;cursor: pointer;}
+i,em{ font-style:normal;}
+strong,b{ font-weight:normal;}
+input[type=button], input[type=submit], input[type=file], button { cursor: pointer; -webkit-appearance: none; }
+input,button,select,textarea{ resize:none; outline:none; border:none 0;padding:0;font-family:'Microsoft Yahei',sans-serif; }
+input[type="search"]{-webkit-appearance:none;} 
+input::-webkit-search-cancel-button {display: none;}
+li{ list-style:none; vertical-align:top;}
+a img{ border:0; }
+img{vertical-align: middle;width: 100%}
+table{border-collapse:collapse; font-size:100%;font-weight:normal;}
+table,tr,th,td{padding:0; font-size:100%;font-weight:normal;}
+.fl{float:left;}
+.fr{float:right;}
+.clearfix:after,.cl:after{display:block;clear:both;content:'';}
+.clearfix,.cl{zoom:1;}
 @font-face {
     font-family: 'iconfont';  /* project id 669428 */
     src: url('//at.alicdn.com/t/font_669428_n7v4zcv5a70evcxr.eot');
@@ -24,6 +46,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html body .weui-cell_access:active {
+      background-color: transparent;
+  }
 
 /*首页最外层*/
 
@@ -136,7 +161,54 @@ body {
     margin-top: 5px;
 }
 
+/*分类*/
+.branch-box{
+    width: 100%;
+    height: calc(100% - 55px );
+}
+.branch-left{
+  width: 26%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 30px 0;
+ 
+}
+.branch-left li{
+    text-align: center;
+    height: 46px;
+    line-height: 46px;
+    position: relative;
+}
+.branch-left li.active{
+    color: #09bb07;
+}
+.branch-left li.active::after{
+    content: '';
+    position: absolute;
+    background: #09bb07;
+    width: 4px;
+    height: 20px;
+    left: 10px;
+    top: 14px;
+}
+.branch-right{
+    border-left: 1px solid #c0bfc4;
+    box-sizing: border-box;
+}
 
+.branch-right ul li{
+    width: 33.3%;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.branch-right ul li img{
+    width: 80%;
+}
+.branch-right ul li p{
+    font-size: 10px;
+}
 /*购物车*/
 
 .wy-header {

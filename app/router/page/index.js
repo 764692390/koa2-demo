@@ -13,9 +13,9 @@ router
         ctx.state.bannerList = await Homes.getBanner();
         await ctx.render("index");
     })
-    .get('search', async(ctx, next) => {
+    .get('branchType', async(ctx, next) => {
         ctx.state.index = 2;
-        await ctx.render("search");
+        await ctx.render("branch-type");
     })
     .get('cart', async(ctx, next) => {
         ctx.state.index = 3;
@@ -56,10 +56,12 @@ router
                 short_name: res[i].short_name,
                 thumb_url: res[i].thumb_url
             }
-            let d = await Shops.create(params);
-            console.log(i);
-            console.log(d);
-
+            let oData = await Shops.findAllData({goods_id: params.goods_id});
+            if(!oData.length){
+                let d = await Shops.create(params);
+                console.log(i);
+                console.log(d);
+            }
         }
 
         ctx.body = list

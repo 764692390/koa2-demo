@@ -15,9 +15,14 @@ class Services extends BaseServices {
     super(Shop)
   }
 
+  findAllData = async where => {
+      const data = await this._model.findAll(where)
+      return data
+  }
+
   getData = async () => {
     let data = await curl((resolve,reject) => {
-      request('https://apiv2.pinduoduo.com/operation/15/groups?opt_type=1&offset=0&size=500', function (error, response, body) {
+      request('https://apiv2.pinduoduo.com/operation/1/groups?opt_type=1&offset=0&size=20', function (error, response, body) {
         if (!error && response.statusCode == 200) {
           resolve(JSON.parse(body))
         } else {
