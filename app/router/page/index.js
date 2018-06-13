@@ -10,37 +10,50 @@ const Shops = new Shop;
 router
     .get('/', async(ctx, next) => {
         ctx.state.index = 1;
+        ctx.state.base.title = '首页'
         ctx.state.bannerList = await Homes.getBanner();
         await ctx.render("index");
     })
     .get('branchType', async(ctx, next) => {
         ctx.state.index = 2;
+        ctx.state.base.title = '分类'
         await ctx.render("branch-type");
     })
     .get('cart', async(ctx, next) => {
         ctx.state.index = 3;
-        await ctx.render("cart");
+        if(ctx.session.user){
+            ctx.state.base.title = '购物车'
+            await ctx.render("cart");
+        } else {
+            ctx.redirect('login'); 
+        }
     })
     .get('my', async(ctx, next) => {
         ctx.state.index = 4;
         if(ctx.session.user){
+            ctx.state.base.title = '我的 '
             await ctx.render("my");
         } else{
             ctx.redirect('login');
         }
     })
     .get('prodDetail/:id',async(ctx, next) => {
+        ctx.state.base.title = '商品详情'
         await ctx.render("prod-detail");
     })
     .get('orderList',async(ctx, next) => {
+        ctx.state.base.title = '我的订单'
         await ctx.render("order-list");
     })
     .get('login',async(ctx, next) => {
+        ctx.state.base.title = '登录'
         await ctx.render("login");
     })
     .get('reg',async(ctx, next) => {
+        ctx.state.base.title = '注册'
         await ctx.render("register");
     })
+    // 模拟数据
     .get('shop',async(ctx, next) => {
         const data = await Shops.getData();
         const list = { data:data.goods_list };

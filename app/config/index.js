@@ -9,7 +9,7 @@ export default {
         cdn: IS_PRODUCTION ? 'https://shop.jczxw.cn' : 'http://192.168.8.199:5000',
         keywords: "Web前端开发",
         description: "LzShop, Web前端开发",
-        title: "LzShop",
+        title: "首页",
         clas: '0',
     },
 }
