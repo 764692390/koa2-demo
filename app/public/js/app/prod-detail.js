@@ -194,6 +194,7 @@ $(function() {
     });
 
     $("#buyNowBtn").click(function() {
+      
         let Amount = $('#pcs .Amount').val(); //当前选中的数量
         $('#Nstock').val(Amount);
 
@@ -201,7 +202,8 @@ $(function() {
             publicTip.showAlert("库存为空");
             return;
         }
-        if($('#isAttr').val() == true && isEmptyObject(AttrJson)){
+       
+        if($('#isAttr').val() == 'true' && isEmptyObject(AttrJson)){
             publicTip.showAlert("请选择属性");
             return;
         }

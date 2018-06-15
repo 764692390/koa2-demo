@@ -1,4 +1,4 @@
-import { Shop, ShopBanner, ShopSku } from '../../models'
+import { Shop, ShopBanner, ShopSku, ShopType } from '../../models'
 import BaseServices from '../base-services'
 import request from 'request'
 
@@ -15,6 +15,7 @@ class Services extends BaseServices {
 
     this._ShopBanner = new ShopBanner();
     this._ShopSku = new ShopSku();
+    this._ShopType = new ShopType();
 
   }
 
@@ -41,7 +42,6 @@ class Services extends BaseServices {
   Detail = async ctx => {
     const goods_id = ctx.params.id;
     let item = await this._model.findAll({ goods_id });
-
 
     if (item.length > 0) {
       let items = item[0];
@@ -73,6 +73,18 @@ class Services extends BaseServices {
     }
   }
 
+  // 分类
+  BranchType = async ctx => {
+    let item = await this._ShopType.findAll();
+    return item;
+  }
+
+  //分类详情
+  BranchTypeDetail = async ctx =>{
+    let item = await this._model.typeIdGetList(ctx);
+    console.log(item);
+    return item;
+  }
 
 }
 
