@@ -6,14 +6,21 @@ import Sequelize from 'sequelize';
  * errmsg
  * data
  */
-const res = (data) => {
-  const info = {
+const errmsg = {
+  1030:{
+    errno: 1030, errmsg: false, message: '系统开小差了，未查到当前商品id!'   //  api/v1/shop/Detail/1262  【商品id不存在】
+  }
+}
+
+const res = data => {
+  let info = {
     "errno":"0",
     "errmsg":"success",
   };
-  
-  if (data) {
+  if (data && !data.data.code) {
     info.data = data.data;
+  }else {
+    info = errmsg[data.data.code];
   }
   return info;
 };

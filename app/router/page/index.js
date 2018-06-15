@@ -39,6 +39,7 @@ router
     })
     .get('prodDetail/:id',async(ctx, next) => {
         ctx.state.base.title = '商品详情'
+        ctx.state.id = ctx.params.id;
         await ctx.render("prod-detail");
     })
     .get('orderList',async(ctx, next) => {

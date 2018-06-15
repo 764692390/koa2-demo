@@ -1,16 +1,17 @@
 $(function () {
   //swper
   var mySwiper = new Swiper('.swiper-container', {
-    loop: true,
-    autoplay: {
+      loop: true,
+      autoplay: {
       delay: 3000
-    },
-    // 分页器
-    pagination: {
+      },
+      // 分页器
+      pagination: {
       el: '.swiper-pagination',
       clickable: true
-    }
+      }
   });
+  
 
   //懒加载
   dmgload.lazyload({

@@ -24,7 +24,7 @@ class BaseModel {
    * @return {Array} Model列表
    */
   findAll = async where => {
-
+    console.log(where);
     return this._schema.findAll({ where, order: [['sort','DESC']] })
   }
 
@@ -35,7 +35,6 @@ class BaseModel {
    */
   create = async data => {
     const sort = await this._getSort()
-    console.log(data);
     return this._schema.create({ ...data, sort })
   }
 
@@ -46,7 +45,6 @@ class BaseModel {
    * @return {Object} 更新后的对象
    */
   update = async (id, data) => {
-
     return this._schema.update(data, { where: { id } })
   }
 
@@ -64,7 +62,7 @@ class BaseModel {
    * @param 
    * @return 
    */
-  getList = async (ctx) => {
+  getList = async ctx => {
     let index = Math.floor(ctx.query.index) || 1;
     let rows = Math.floor( ctx.query.rows ) || 10;
   

@@ -10,7 +10,7 @@ class BaseController {
     let result
 
     try {
-      const data = await this._services.find(id)
+      const data = await this._services.find({ id })
       result = res({ data })
     } catch (e) {
       result = err(e)
@@ -21,7 +21,7 @@ class BaseController {
 
   findAll = async ctx => {
     let result
-    
+
     try {
       const data = await this._services.findAll(ctx.query)
       result = res({ data })
@@ -93,7 +93,7 @@ class BaseController {
   /* 分页 */
   getList = async ctx => {
     let result
-    
+
     try {
       const data = await this._services.getList(ctx)
       result = res({ data })
@@ -102,7 +102,7 @@ class BaseController {
     }
 
     ctx.body = result
-  } 
+  }
 }
 
 export default BaseController

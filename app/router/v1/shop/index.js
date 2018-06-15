@@ -6,9 +6,10 @@ router
   .get('/getList', shop.getList)
   .get('/:id', shop.find)
   .get('/', shop.findAll)
-  .post('/', shop.create)
-  .put('/:id', shop.update)
-  .patch('/:id', shop.patch)
-  .delete('/:id', shop.remove);
+  .get('/Detail/:id', shop.Detail)
+  // .post('/', shop.create)
+  // .put('/:id', shop.update)
+  // .patch('/:id', shop.patch)
+  // .delete('/:id', shop.remove);
 
 export default router

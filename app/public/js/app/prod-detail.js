@@ -1,140 +1,110 @@
 
 
 $(function() {
+    var stock;
+    var AttrJson= {};
 
-    var gavJsonArr = JSON.parse($("#gavJsonStr").val());
-    var gavObMap = new Map();
+    // 初始化数据;
+    var isLoadDetail = false;
+    var id  = $('#detailId').val(); //获取商品id
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: '/api/v1/shop/Detail/'+id
+    }).done(function(r) {
+        isLoadDetail = true;
+        if(r.errmsg){
+           let data = r.data;
+           // 渲染轮播图Start
+           let bannerStr='';
+           for(let i=0; i<data.bannerList.length; i++){
+                bannerStr+=`<div class="swiper-slide"><img src="${data.bannerList[i].url}" width="100%"></div>`
+           }
+           $('.top-swper-box .swiper-wrapper').html(bannerStr);
+           // 渲染轮播图End
 
-    for (var i = 0; i < gavJsonArr.length; i++) {
-        if (!gavJsonArr[i].prodId) continue;
-
-        var gavObA = gavObMap.get(gavJsonArr[i].prodId);
-        if (!gavObA) gavObA = new Map();
-        gavObA.set(gavJsonArr[i].attriId, gavJsonArr[i].attriValue);
-
-        gavObMap.set(gavJsonArr[i].prodId, gavObA);
-    }
-
-    function changeLiDisStatus() {
-        $(".gavUl li").each(function() {
-            if ($(this).attr("disableFlag") == "true") {
-                return;
-            }
-            var itGaId = $(this).attr("groupAttriId");
-            var itGaValue = $(this).find("a").html();
-
-            if ($(".active." + itGaId).length > 0) {
-                if ($(this).hasClass("disabled")) {
-                    $(this).removeClass("disabled");
+           //swper
+            var mySwiper = new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: {
+                delay: 3000
+                },
+                // 分页器
+                pagination: {
+                el: '.swiper-pagination',
+                clickable: true
                 }
-                return;
-            }
-
-            var activeMap = new Map();
-            $(".active").each(function() {
-                activeMap.set($(this).attr("groupAttriId"), $(this).find("a").html());
             });
 
-            var isMatch = false;
-            for (var gavItem of gavObMap.entries()) {
-                var gavOb = gavItem[1];
-                if (gavOb.get(itGaId) != itGaValue) {
-                    continue;
+            // 文字描述
+            $('.weui-media-box__title').html(data.goods_name);
+            $('.price').html('¥'+data.price/100);
+            if(data.stock === 0){
+                $('.stock-box').html('0');
+                $('#isAttr').val(false);
+            } else if(!data.stock) {
+                //有属性
+                $('#isAttr').val(true);
+                let n=0;
+                let json = {};
+                for(let i=0; i<data.attrs.length; i++){
+                    n+=data.attrs[i].stock;
+                    json[data.attrs[i].attr_type] = [] ;
                 }
-
-                var isMatchActive = true;
-                for (var activeItem of activeMap.entries()) {
-                    if (gavOb.get(activeItem[0]) != activeItem[1]) {
-                        isMatchActive = false;
-                        break;
+                for(let i=0; i<data.attrs.length; i++){
+                    json[data.attrs[i].attr_type].push(data.attrs[i]) ;
+                }
+                // 拼接属性
+                let html ='';
+                for(var i in json) {
+                    html+=`<div class="weui-media-box_appmsg">
+                                <div class="weui-media-box__hd proinfo-txt-l" style="line-height: 0px;margin-top: 11px;" data-attrtype="${json[i][0].attr_type}">
+                                    <span class="promotion-label-tit">${json[i][0].attr_name}</span>
+                                </div>
+                                <div class="weui-media-box__bd">
+                                    <div class="promotion-sku clear">
+                                        <ul class="gavUl">`
+                    for(let j=0; j<json[i].length; j++){
+                        html+=  `<li class="colour"  disableFlag="${json[i][j].stock_name}" data-id="${json[i][j].id}"  data-stock="${json[i][j].stock}" data-attrtype="${json[i][0].attr_type}">
+                                    <a href="javascript:;">${json[i][j].stock_name}</a>
+                                </li>`
                     }
+                    html+=  `</ul>
+                        </div>
+                    </div>
+                </div>`
                 }
+                $('.weui-media-box_text').html(html);
+                $('.stock-box').html(n);
 
-                if (isMatchActive) {
-                    isMatch = true;
-                    break;
-                }
-            }
-
-            if (isMatch) {
-                $(this).removeClass("disabled");
             } else {
-                if (!$(this).hasClass("disabled")) {
-                    $(this).addClass("disabled");
-                    $(this).removeClass("active");
-                }
+                $('.stock-box').html(data.stock);
+                $('#isAttr').val(false);
             }
-        });
-    }
-
-    var selFlag = false;
-    var disableAddCart = false;
-    $(".gavUl li").click(function() {
-        if ($(this).hasClass("disabled")) {
-            return;
+            Spinner( $('.stock-box').html());
         }
 
-        var selGroupAttriId = $(this).attr("groupAttriId");
-        var selGroupAttriValue = $(this).find("a").html();
+       
+        
+        //属性切换
+        $('.weui-media-box_appmsg').on('click','.colour',function(){
+            $('.colour').removeClass('active');
+            $(this).addClass('active');
+            let stock = $(this).attr('data-stock')
+            $('.stock-box').html(stock);
+            Spinner(stock);
+            $('#isAttr').val(true);
+            $('#Attr').val('');
+            AttrJson[$(this).attr('data-attrtype')] = $(this).attr('data-id');
+        })
 
-        if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
-            disableAddCart = true;
-            if (!selFlag) selFlag = true;
-            $("#addCart").css("background-color", "gray");
-            changeLiDisStatus();
-        } else {
-            $(".active." + selGroupAttriId).removeClass("active");
-            $(this).addClass("active");
-
-            var activeMap = new Map();
-            $(".active").each(function() {
-                activeMap.set($(this).attr("groupAttriId"), $(this).find("a").html());
-            });
-
-            var matchProdId;
-            for (var gavItem of gavObMap.entries()) {
-                var isMatch = true;
-                var gavOb = gavItem[1];
-
-                for (var gavObItem of gavOb.entries()) {
-                    if (activeMap.get(gavObItem[0]) != gavObItem[1]) {
-                        isMatch = false;
-                        break;
-                    }
-                }
-
-                if (isMatch) {
-                    matchProdId = gavItem[0];
-                    break;
-                }
-            }
-            if (matchProdId) {
-                window.location.href = '/zshop/prodDetail/' + matchProdId;
-            } else {
-                disableAddCart = true;
-                $("#addCart").css("background-color", "gray");
-                if (!selFlag) {
-                    $(".gavUl li:not(." + selGroupAttriId + ")").removeClass("active");
-                    selFlag = true;
-                }
-                changeLiDisStatus();
-            }
-        }
+       console.log(r);
+    }).fail(function(jqXHR, textStatus) {
+        $("#detailDiv-loading").hide();
+        $("#detailDiv-reload").show();
     });
 
-    var max = 5;
-    var min = 1;
-    var stock = parseInt($("#pstock").val());
-    if (stock < max) {
-        max = stock;
-    }
-    if (stock < min) {
-        min = stock;
-    }
-    $("#pcs").Spinner({ value: min, len: 3, max: max });
-
-    var isLoadDetail = false;
+    // 顶部tab 切换
     $(".wy-header-titlebut").click(function() {
         var currentId = $(this).attr("id");
         $(".wy-product-content").hide();
@@ -144,9 +114,24 @@ $(function() {
         $(this).addClass('wy-header-titlebut-active');
 
         if (currentId == "detail" && !isLoadDetail) {
-            //loadDetail();
+            
         }
     });
+
+     // 数量设置 
+    function Spinner(stock) {
+         var max = stock;
+         var min = 1;
+         if (stock < max) {
+             max = stock;
+         }
+         if (stock < min) {
+             min = stock;
+         }
+         $("#pcs").html('');
+         $('#pstock').val(stock);
+         $("#pcs").Spinner({ value: min, len: 3, max: max });
+    }
 
     $("#detailDiv-reload").click(function() {
         loadDetail();
@@ -168,6 +153,14 @@ $(function() {
             $("#detailDiv-reload").show();
         });
     }
+
+    //判断是否为空json
+    function isEmptyObject(e) {  
+        var t;  
+        for (t in e)  
+            return !1;  
+        return !0  
+    }  
 
     $("#addCart").click(function() {
         if (disableAddCart) {
@@ -201,25 +194,34 @@ $(function() {
     });
 
     $("#buyNowBtn").click(function() {
-        if (stock <= 0) {
+        let Amount = $('#pcs .Amount').val(); //当前选中的数量
+        $('#Nstock').val(Amount);
+
+        if ($('#pstock').val() <= 0 ) {
             publicTip.showAlert("库存为空");
             return;
         }
+        if($('#isAttr').val() == true && isEmptyObject(AttrJson)){
+            publicTip.showAlert("请选择属性");
+            return;
+        }
+        
         publicTip.showLoadingToast(true, "操作中");
-        $.ajax({
-            type: 'post',
-            dataType: 'json',
-            url: '/zshop/userapi/buyNow',
-            data: {
-                pid: $("#pid").val(),
-                pcount: $("#pcs").find("input").val()
-            }
-        }).done(function(r) {
-            window.location.href = "/zshop/user/settlement/" + r.orderId;
-        }).fail(function(jqXHR, textStatus) {
-            publicTip.showLoadingToast(false);
-            publicTip.showTip(jqXHR.responseJSON);
-        });
+
+        // $.ajax({
+        //     type: 'post',
+        //     dataType: 'json',
+        //     url: '/zshop/userapi/buyNow',
+        //     data: {
+        //         pid: $("#pid").val(),
+        //         pcount: $("#pcs").find("input").val()
+        //     }
+        // }).done(function(r) {
+        //     window.location.href = "/zshop/user/settlement/" + r.orderId;
+        // }).fail(function(jqXHR, textStatus) {
+        //     publicTip.showLoadingToast(false);
+        //     publicTip.showTip(jqXHR.responseJSON);
+        // });
     });
 
     $("#collectionHref").click(function() {
